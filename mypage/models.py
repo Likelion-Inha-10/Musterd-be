@@ -1,8 +1,8 @@
 from django.db import models
-from auth.models import User
+
 
 class Plan(models.Model):
-    email = models.ForeignKey(User)
+    # email = models.ForeignKey(User)
     present_time = models.DateTimeField(auto_now_add=True)
     isDone = models.BooleanField()
     promise_time = models.IntegerField()
