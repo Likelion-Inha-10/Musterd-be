@@ -43,5 +43,8 @@ class User(AbstractBaseUser,PermissionsMixin):
     
     objects = UserManager()
     
+    # def is_staff(self):
+    #     return True
+    
 
     

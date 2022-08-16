@@ -7,7 +7,8 @@ from .serializers import planSerializers, promiseSerializers
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
-
+from http import HTTPStatus
+from rest_framework import generics
 # <class promise>
 # GET /mypage/promise_place/:plan_id
 # PATCH /mypage/finish/:plan_id
@@ -20,7 +21,7 @@ from rest_framework.exceptions import ValidationError
 class promise(APIView):
     # 새로운 플랜 생성
     def post(self,request, *args, **kwargs):
-        # user=User.objects.get(email=User.email)
+        # myuser=User.objects.get(pk=request.user.id)
         plan=Plan()
         plan.title=request.data["title"]
         plan.category=request.data["category"]
@@ -28,10 +29,15 @@ class promise(APIView):
         plan.place_id=request.data["place_id"]
         plan.promise_time=request.data["promise_time"]
         plan.max_count=request.data["max_count"]
+        plan.user = request.user #
+        plan.name = request.user.username #
   
         # Plan.name=user.objects.name
         plan.save()
-        return Response({"message": "일정 저장 완료!"}, status=200)
+        # planse = planSerializers(plan)
+        return Response(status=HTTPStatus.OK) #
+        # return Response({"message": "일정 저장 완료!"}, status=200)
+        # return Response(planse.data)
 
     # 해당 플랜의 장소와 약속 내용들을 조회  
     def get(self,request, plan_id):
@@ -66,3 +72,8 @@ class promise(APIView):
         return Response({"message":"일정 수행 완료"})
 
 # class myplan(APIView):
+
+class PlanList(generics.ListCreateAPIView):
+    queryset = Plan.objects.all() #객체를 반환하는데 사용
+    serializer_class = planSerializers
+    lookup_field = 'id'
