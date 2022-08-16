@@ -8,4 +8,6 @@ urlpatterns = [
     path('finish/<int:plan_id>',views.promise.as_view()),
     path('delete/<int:plan_id>',views.promise.as_view()),
     path('create/plan',views.promise.as_view()),
+    path('',views.PlanList.as_view()),
+    
 ]
