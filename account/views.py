@@ -61,7 +61,7 @@ class AuthView(APIView):
                     "id": serializer.data.get('id'),
                     "profile_image": serializer.data.get('profile_image'),
                     "name": serializer.data.get('username'),
-                    "auth_token": refresh_token,
+                    "auth_token": access_token,
                     # "message": "login success",
                     # "token": {
                     #     "access_token": access_token,
