@@ -1,7 +1,7 @@
 from django.db import models
 from account.models import User
 
-class Plan(models.Model):
+class plan(models.Model):
     email = models.ForeignKey(User,on_delete=models.CASCADE,null=True)
     present_time = models.DateTimeField(auto_now_add=True)
     isDone = models.BooleanField(default=False)
