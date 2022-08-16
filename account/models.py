@@ -32,14 +32,14 @@ class UserManager(BaseUserManager):
         return superuser
 
 class User(AbstractBaseUser,PermissionsMixin):
-    email = models.EmailField(('email address'), unique=True)
+    email = models.EmailField(('email address'), unique=True,null = True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
     
     password = models.CharField(max_length=30,blank=False)
     profile_image = models.ImageField(blank=True)
-    username = models.CharField(max_length=30,blank=False)
-    univ = models.CharField(max_length=30,blank=False)
+    username = models.CharField(max_length=30,null=True)
+    univ = models.CharField(max_length=30,null=True)
     
     objects = UserManager()
     
