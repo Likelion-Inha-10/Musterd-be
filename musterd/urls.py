@@ -6,5 +6,5 @@ urlpatterns = [
     path('account/', include('account.urls')),
     path('mypage/', include('mypage.urls')),
     # path('friend/', include('friend.urls')),
-    # path('search/', include('search.urls')),
+    path('search/', include('search.urls')),
 ]
