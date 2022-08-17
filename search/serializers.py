@@ -6,3 +6,8 @@ class friendSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('id','username')
+
+class listSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Plan
+        fields = ('place_name','name','title','promise_time')

@@ -7,4 +7,5 @@ from django.conf.urls.static import static
 from search import views
 urlpatterns = [
     path("friend", views.search_friend.as_view()), 
+    path("category", views.search_category.as_view()), 
 ]
