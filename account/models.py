@@ -42,7 +42,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     univ = models.CharField(max_length=30,null=True)
     
     point = models.IntegerField(null=True)
-
+    is_qr_scanned = models.BooleanField(default=False)
 
     is_admin = models.BooleanField(default=False)
     
