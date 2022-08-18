@@ -40,6 +40,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     profile_image = models.ImageField(blank=True)
     username = models.CharField(max_length=30,null=True)
     univ = models.CharField(max_length=30,null=True)
+
     point = models.IntegerField(null=True)
 
 
@@ -47,6 +48,9 @@ class User(AbstractBaseUser,PermissionsMixin):
 
 
 
+
+
+    is_qr_scanned = models.BooleanField(default=False)
 
 
 
