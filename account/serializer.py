@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-
+import random
 User = get_user_model()
 
 
@@ -8,7 +8,7 @@ class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         # fields = '__all__'
-        fields = ('id','profile_image','username','email', 'password', 'univ')
+        fields = ('id','profile_image','username','email', 'password', 'univ',)
 
     def create(self, validated_data):
         email = validated_data.get('email')
@@ -16,11 +16,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         username = validated_data.get('username')
         profile_image = validated_data.get('profile_image')
         univ = validated_data.get('univ')
+        point = random.randint(1,100)
         user = User(
             email=email,
             username = username,
             profile_image = profile_image,
-            univ = univ
+            univ = univ,
+            point = point
         )
         user.set_password(password)
         user.save()

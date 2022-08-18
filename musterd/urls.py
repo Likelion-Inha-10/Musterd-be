@@ -5,7 +5,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('account/', include('account.urls')),
     path('mypage/', include('mypage.urls')),
-    # path('friend/', include('friend.urls')),
+    path('friend/', include('friend.urls')),
     path('search/', include('search.urls')),
     path('travel-stamp', TravelStampAPIView.as_view())
 ]
