@@ -40,6 +40,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     profile_image = models.ImageField(blank=True)
     username = models.CharField(max_length=30,null=True)
     univ = models.CharField(max_length=30,null=True)
+    point = models.IntegerField(null=True)
 
 
     is_admin = models.BooleanField(default=False)

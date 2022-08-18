@@ -10,7 +10,7 @@ from rest_framework import generics, status
 
 class search_friend(APIView):
     def get(self, request):
-        queryset = User.objects.all()
+        queryset = User.objects.filter(username__contains = request.data['name']) # 언더바 2개임
         serializer_class = friendSerializers(queryset, many=True)
         serialized_data=serializer_class.data
         return Response(serialized_data)

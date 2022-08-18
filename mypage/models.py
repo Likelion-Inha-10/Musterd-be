@@ -14,6 +14,7 @@ class Plan(models.Model):
     name=models.CharField(max_length=30)
     category=models.CharField(max_length=30)
     count=models.IntegerField(default=1)
+    joiner = models.ManyToManyField(User,related_name='join')
 
     def __str__(self):
         return self.user.email

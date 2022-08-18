@@ -9,6 +9,8 @@ from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 from http import HTTPStatus
 from rest_framework import generics
+from rest_framework.decorators import api_view
+from friend.models import UserPoint
 # <class promise>
 # GET /mypage/promise_place/:plan_id
 # PATCH /mypage/finish/:plan_id
@@ -77,3 +79,22 @@ class PlanList(generics.ListCreateAPIView):
     queryset = Plan.objects.all() #객체를 반환하는데 사용
     serializer_class = planSerializers
     lookup_field = 'id'
+    
+    
+# @api_view(['POST']) # plan 작성 완료버튼 누르면 reward 내용까지 저장  프론트에서 reward받아와야함 plan_id도
+# def save_with_reward(request,plan_id):
+#     plan = Plan.objects.get(pk=plan_id)
+#     # plan.reward = request.data['reward']
+#     # plan.save()
+    
+#     for i in (plan.joiner-1): #일단 3개 만들고
+#         joiner_UserPoint = UserPoint() #UserPoint 객체 생성
+#         nowuser = get_object_or_404(User,pk=plan.joiner[i])
+#         joiner_UserPoint.owner = nowuser # UserPoint 객체의 owner필드에 요청한'사람'을 저장 
+#         joiner_UserPoint.point = 0
+#         joiner_UserPoint.save()
+    
+#     for j in plan.joiner:
+#             friend = get_object_or_404(User,pk=plan.joiner[j])
+#             nowuser.friend_id = friend
+            
