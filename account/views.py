@@ -2,6 +2,7 @@ from http import HTTPStatus
 from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework.decorators import APIView
+from rest_framework.views import APIView
 from .serializer import RegisterSerializer,UserSerializer
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework import status
@@ -90,3 +91,14 @@ class logout(APIView):
         response.delete_cookie('refresh_token')
         response.delete_cookie('access_token')
         return response
+
+class TravelStampAPIView(APIView):
+    def post(self, request):
+        user = request.user
+        if request.data.get('qr_data') == "inha":
+            user.is_qr_scanned = True
+            user.save()
+            return Response(data=None, status=201)
+        return Resposne(data=None, status=404)
+    def get(self, request):
+        return Response(data={"is_qr_scanned":request.user.is_qr_scanned})
