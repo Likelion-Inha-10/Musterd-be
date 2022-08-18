@@ -22,7 +22,8 @@ class RegisterSerializer(serializers.ModelSerializer):
             username = username,
             profile_image = profile_image,
             univ = univ,
-            point = point
+            point = point,
+            is_qr_scanned = False
         )
         user.set_password(password)
         user.save()
