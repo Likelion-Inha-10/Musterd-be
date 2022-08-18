@@ -12,12 +12,13 @@ from rest_framework import generics
 #    }
 
 class listPlans(generics.ListCreateAPIView):
-    lookup_field = 'id'
     def get(self, request):
-        friendId = request.GET.get('friend-id', None)
-        presentTime = request.GET.get('present_time', None)
+        # friendId = request.GET.get('friend-id', None)
+        # presentTime = request.GET.get('present_time', None)
+        friendId = request.data['friend-id']
+        presentTime = request.data['present_time']
         #GET 요청의 파라미터로 friend-id와 present_time 받음
         #해당 friend-id를 가진 사용자의 약속 중 present_time 후에 있는 약속 목록을 가져옴
         queryset = Plan.objects.filter(user_id=friendId, promise_time__gte=int(presentTime))
-        serializer_class = friendsPlanSerializer(queryset, many=True)
+        serializer_class = friendsPlanSerializer(queryset, context={'request': request}, many=True)
         return Response(serializer_class.data, status=201)
