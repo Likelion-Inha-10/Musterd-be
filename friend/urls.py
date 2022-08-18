@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 urlpatterns = [
     path('create/<int:plan_id>',views.join),
     path('rank',views.RankList.as_view()),
-    path('plan/<int:friend_id>/',views.listPlans.as_view()),
+    path('plan/<int:friend_id>', views.listPlans.as_view()),
     
 ]
+
