@@ -43,6 +43,13 @@ class User(AbstractBaseUser,PermissionsMixin):
     point = models.IntegerField(null=True)
 
 
+
+
+
+
+
+
+
     is_admin = models.BooleanField(default=False)
     
     objects = UserManager()
