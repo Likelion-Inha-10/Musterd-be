@@ -4,9 +4,9 @@ from account.models import User
 
 class Plan(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    present_time = models.IntegerField()
+    present_time = models.IntegerField(null=True)
     isDone = models.BooleanField(default=False)
-    promise_time = models.IntegerField()
+    promise_time = models.IntegerField(null=True)
     title = models.CharField(max_length=30,blank=False)
     place_name = models.CharField(max_length=30)
     place_id = models.IntegerField()
