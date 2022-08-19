@@ -19,4 +19,4 @@ class Plan(models.Model):
     profile_image = models.URLField(null=True)
 
     def __str__(self):
-        return self.user.email
+        return self.title
