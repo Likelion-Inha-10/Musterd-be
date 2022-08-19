@@ -5,7 +5,7 @@ from account.serializer import UserSerializer
 from account.models import User
 from mypage.models import Plan 
 from rest_framework.response import Response
-
+from rest_framework import status
 
 from .serializer import friendsPlanSerializer
 from rest_framework import generics
@@ -29,12 +29,32 @@ class listPlans(generics.ListCreateAPIView):
         return Response(serializer_class.data, status=201)
 
 @api_view(['POST'])
-def join(request,plan_id):  # 내가 plan에 동참 누르면 plan의 주인의 point가 1 증가
-    
+def join(request):  # 내가 plan에 동참 누르면 plan의 주인의 point가 1 증가
+    plan_id = request.data['plan_id']
     plan = get_object_or_404(Plan,pk=plan_id)
     user = get_object_or_404(User,pk=plan.user.id)
     user.point+=1
     user.save()
+    plan.count+=1
+    plan.joiner.add(request.user)
+    plan.save()
+    
+    # myuser=User.objects.get(pk=request.user.id)
+    myplan=Plan()
+    myplan.title=plan.title
+    myplan.category=plan.category
+    myplan.place_name=plan.place_name
+    myplan.place_id=plan.place_id
+    myplan.promise_time=plan.promise_time
+    myplan.max_count=plan.max_count
+    myplan.user = request.user
+    myplan.name = request.user.username #
+    myplan.profile_image = request.user.profile_image
+
+    # Plan.name=user.objects.name
+    myplan.save()
+    # planse = planSerializers(plan)
+    return Response(status = status.HTTP_200_OK) #
    
     return Response(status=200)
     

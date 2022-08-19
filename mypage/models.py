@@ -1,3 +1,4 @@
+import profile
 from django.db import models
 from account.models import User
 
@@ -15,6 +16,7 @@ class Plan(models.Model):
     category=models.CharField(max_length=30)
     count=models.IntegerField(default=1)
     joiner = models.ManyToManyField(User,related_name='join')
+    profile_image = models.URLField(null=True)
 
     def __str__(self):
         return self.user.email
