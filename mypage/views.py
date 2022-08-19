@@ -16,9 +16,11 @@ from friend.models import UserPoint
 # PATCH /mypage/finish/:plan_id
 # DELETE /mypage/delete/:plan_id
 # POST /mypage/create/plan
-
+# 
 # <class myplan>
 # GET /mypage
+#
+#
 
 class promise(APIView):
     # 새로운 플랜 생성
