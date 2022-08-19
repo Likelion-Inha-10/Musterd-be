@@ -10,4 +10,4 @@ class friendSerializers(serializers.ModelSerializer):
 class listSerializers(serializers.ModelSerializer):
     class Meta:
         model = Plan
-        fields = ('place_name','name','title','promise_time','reward','max_count')
+        fields = ('place_name','name','title','promise_time','reward','max_count','count')

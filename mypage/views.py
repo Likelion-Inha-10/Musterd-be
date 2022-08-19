@@ -33,8 +33,10 @@ class promise(APIView):
         plan.place_id=request.data["place_id"]
         plan.promise_time=request.data["promise_time"]
         plan.max_count=request.data["max_count"]
+        plan.count = 1
         plan.user = request.user #
         plan.name = request.user.username #
+        plan.profile_image = request.user.profile_image
   
         # Plan.name=user.objects.name
         plan.save()
