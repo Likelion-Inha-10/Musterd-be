@@ -78,10 +78,28 @@ class promise(APIView):
 # class myplan(APIView):
 
 class PlanList(generics.ListCreateAPIView):
-    queryset = Plan.objects.all() #객체를 반환하는데 사용
+    
+    queryset = Plan.objects.all()
     serializer_class = planSerializers
     lookup_field = 'id'
+
+    def get(self, request,present_time, *args, **kwargs):
+        return self.list(request, present_time,*args, **kwargs)
     
+    def list(self, request, present_time,*args, **kwargs):
+        queryset = self.filter_queryset(self.get_queryset())      
+        queryset = queryset.filter(user=request.user,promise_time=present_time)
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)
+    
+    
+
+        
     
 # @api_view(['POST']) # plan 작성 완료버튼 누르면 reward 내용까지 저장  프론트에서 reward받아와야함 plan_id도
 # def save_with_reward(request,plan_id):

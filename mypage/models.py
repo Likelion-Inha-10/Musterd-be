@@ -4,7 +4,7 @@ from account.models import User
 
 class Plan(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    present_time = models.DateTimeField(auto_now_add=True)
+    present_time = models.IntegerField()
     isDone = models.BooleanField(default=False)
     promise_time = models.IntegerField()
     title = models.CharField(max_length=30,blank=False)
