@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser,PermissionsMixin
-
+import random
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -37,7 +37,7 @@ class User(AbstractBaseUser,PermissionsMixin):
     REQUIRED_FIELDS = []
     
     password = models.CharField(max_length=30,blank=False)
-    profile_image = models.ImageField(blank=True)
+    profile_image = models.URLField(blank=True)
     username = models.CharField(max_length=30,null=True)
     univ = models.CharField(max_length=30,null=True)
     

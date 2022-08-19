@@ -123,6 +123,7 @@ def elec_location(request):
     params = {'query': request.data['place_name'],'page': 1}
     
     headers = {"Authorization": f"KakaoAK {API_KEY}"}
+    
 
     places = requests.get(url, params=params, headers=headers).json()['documents']
     total = requests.get(url, params=params, headers=headers).json()['meta']['total_count']

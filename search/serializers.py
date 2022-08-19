@@ -5,7 +5,7 @@ from account.models import User
 class friendSerializers(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id','username')
+        fields = ('id','username','profile_image','point')
 
 class listSerializers(serializers.ModelSerializer):
     class Meta:

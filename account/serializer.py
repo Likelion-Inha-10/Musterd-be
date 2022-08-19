@@ -1,3 +1,4 @@
+import profile
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 import random
@@ -14,15 +15,17 @@ class RegisterSerializer(serializers.ModelSerializer):
         email = validated_data.get('email')
         password = validated_data.get('password')
         username = validated_data.get('username')
-        profile_image = validated_data.get('profile_image')
+        # profile_image = validated_data.get('profile_image')
         univ = validated_data.get('univ')
         point = random.randint(1,100)
+        profile_image = "https://www.gravatar.com/avatar/"+f"{random.randint(1,100)}"+"?d=identicon"
         user = User(
             email=email,
             username = username,
-            profile_image = profile_image,
+            # profile_image = profile_image,
             univ = univ,
             point = point,
+            profile_image = profile_image,
             is_qr_scanned = False
         )
         user.set_password(password)
